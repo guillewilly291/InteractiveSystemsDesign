@@ -12,6 +12,25 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LogInPage } from '../pages/log-in/log-in';
 
+import { IonicPageModule } from 'ionic-angular';
+import { AngularFireDatabaseModule } from 'angularfire2/database'
+import { AngularFireModule } from 'angularfire2';
+import { RegisterPage } from '../pages/register/register';
+import { AuthProvider } from '../providers/auth/auth';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Toast } from '@ionic-native/toast/ngx';
+
+
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyAO4jclR8Ze7ZR_UPbURBp768vFp0l7SUI",
+  authDomain: "quizup-dsi.firebaseapp.com",
+  databaseURL: "https://quizup-dsi.firebaseio.com",
+  projectId: "quizup-dsi",
+  storageBucket: "quizup-dsi.appspot.com",
+  messagingSenderId: "31712275668"
+};
+
 @NgModule({
   declarations: [
     MyApp,
@@ -19,11 +38,15 @@ import { LogInPage } from '../pages/log-in/log-in';
     ContactPage,
     HomePage,
     TabsPage,
-    LogInPage
+    LogInPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    IonicPageModule.forChild(HomePage)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -32,12 +55,19 @@ import { LogInPage } from '../pages/log-in/log-in';
     ContactPage,
     HomePage,
     TabsPage,
-    LogInPage
+    LogInPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthProvider,
+    AngularFireAuth,
+    Toast
+    
   ]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(){}
+ }

@@ -1,3 +1,22 @@
 page-log-in {
 
 }
+#imagen{
+    height:200px;
+    width:200px;
+    background-color: white;
+    margin-left:25%;
+    border-radius: 50%;
+}
+#imagen>img{
+    border-radius: 50%;
+}
+.list-ios > .item-block:first-child {
+    border-top: none;
+}
+.list-ios .item-block .item-inner {
+    border-bottom: 0.55px solid #c8c7cc;
+}
+.list-ios > .item-block:last-child, .list-ios > .item-wrapper:last-child .item-block {
+    border-bottom: none;
+}

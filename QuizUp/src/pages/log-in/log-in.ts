@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import {RegisterPage} from '../register/register'
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AuthProvider } from '../../providers/auth/auth';
 /**
  * Generated class for the LogInPage page.
  *
@@ -14,12 +16,30 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'log-in.html',
 })
 export class LogInPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  user = { email: '', password: '' };
+  constructor(public navCtrl: NavController,
+     public navParams: NavParams,
+      public db:AngularFireDatabase,
+      public auth:AuthProvider,
+      public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LogInPage');
   }
-
-}
+  goToRegisterPage(){
+    this.navCtrl.push(RegisterPage);
+  }
+  login() {
+    this.auth.loginUser(this.user.email, this.user.password).then((user) => {
+    }
+    )
+      .catch(err => {
+        let alert = this.alertCtrl.create({
+          title: 'Error',
+          subTitle: err.message,
+          buttons: ['Aceptar']
+        });
+        alert.present();
+      })
+  }
