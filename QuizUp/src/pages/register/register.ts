@@ -33,6 +33,7 @@ export class RegisterPage {
    addUserToDataBase(email, password) {
      this.auth.registerUser(email, password)
        .then((user) => {
+         this.db.database.ref(`users/${Date.now()}`).set({id:email});
          const toast = this.toastCtrl.create({
            message: 'User was added successfully',
            duration: 3000

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -15,7 +15,8 @@ import { App } from 'ionic-angular';
 })
 export class MyApp {
   rootPage:any = LogInPage;
-
+  @ViewChild('nav')
+  public navCtrl: NavController;
   constructor(public app: App,platform: Platform,public afAuth:AngularFireAuth,statusBar: StatusBar, splashScreen: SplashScreen, private auth: AuthProvider) {
     platform.ready().then(() => {
       //Las lineas de abajo permiten al iniciar la app comprobar si existe una sesion abierta
@@ -41,7 +42,9 @@ export class MyApp {
   }
   public logout() {
     this.afAuth.auth.signOut().then(() => {
+      alert("logOut")
       this.app.getActiveNav().setRoot(LogInPage);
+      this.rootPage= LogInPage;//ponemos como pagina inicial la de logIn
     })
   }
 }
