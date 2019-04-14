@@ -29,7 +29,7 @@ export class MyApp {
       });
       firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-          //User signed in
+          alert(firebase.auth().currentUser.email);
         } else {
           // No user is signed in.
         }

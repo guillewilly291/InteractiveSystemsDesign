@@ -5,6 +5,7 @@ import { isAdmin } from '@firebase/util';
 import { Toast } from '@ionic-native/toast/ngx';
 import { AuthProvider } from '../../providers/auth/auth';
 import { HomePage } from '../home/home';
+import firebase from 'firebase';
 /**
  * Generated class for the RegisterPage page.
  *
@@ -33,7 +34,7 @@ export class RegisterPage {
    addUserToDataBase(email, password) {
      this.auth.registerUser(email, password)
        .then((user) => {
-         this.db.database.ref(`users/${Date.now()}`).set({id:email});
+         this.db.database.ref('users/'+firebase.auth().currentUser.uid).set({id:email});
          const toast = this.toastCtrl.create({
            message: 'User was added successfully',
            duration: 3000

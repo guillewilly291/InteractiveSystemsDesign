@@ -32,6 +32,7 @@ export class LogInPage {
   }
   login() {
     this.auth.loginUser(this.user.email, this.user.password).then((user) => {
+      
     }
     )
       .catch(err => {
