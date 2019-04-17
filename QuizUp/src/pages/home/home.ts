@@ -25,7 +25,7 @@ export class HomePage {
       debugger
       var hola=firebase.auth().currentUser.email;
       if(keys[i].id.toLocaleLowerCase()==firebase.auth().currentUser.email){
-        alert("Hola"+ firebase.auth().currentUser.email);
+        alert("Hola, "+ firebase.auth().currentUser.email);
       }
     
     }  
