@@ -19,7 +19,7 @@ import firebase from 'firebase';
   templateUrl: 'register.html',
 })
 export class RegisterPage {
-  user = { email: null, password:null, rol: null }
+  user = { nombre: null, email: null, password:null, rol: null }
   constructor(
     public navCtrl: NavController,
      public navParams: NavParams,
@@ -31,11 +31,11 @@ export class RegisterPage {
     
   }
   
-   addUserToDataBase(email, password, rol) {
+   addUserToDataBase(nombre, email, password, rol) {
      this.auth.registerUser(email, password)
        .then((user) => {
          debugger
-         this.db.database.ref('users/'+firebase.auth().currentUser.uid).set({id:email, rol:rol});
+         this.db.database.ref('users/'+firebase.auth().currentUser.uid).set({nombre:nombre, id:email, rol:rol});
          const toast = this.toastCtrl.create({
            message: 'User was added successfully',
            duration: 3000

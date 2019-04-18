@@ -17,6 +17,12 @@
   
 <form>
   <ion-item>
+    <ion-label floating>Nombre</ion-label>
+    <ion-input [(ngModel)]="user.nombre" [ngModelOptions]="{standalone: true}" type="text" autocapitalize="true" required>
+    </ion-input>
+  </ion-item>
+
+  <ion-item>
     <ion-label floating>Email</ion-label>
     <ion-input [(ngModel)]="user.email" name="email" type="text" autocapitalize="off" required>
     </ion-input>
@@ -37,7 +43,7 @@
  
 </form>
     <div padding>
-      <button ion-button block (click)=addUserToDataBase(user.email,user.password,user.rol)>Crear cuenta</button>
+      <button ion-button block (click)=addUserToDataBase(user.nombre,user.email,user.password,user.rol)>Crear cuenta</button>
      
     </div>
 </ion-content>

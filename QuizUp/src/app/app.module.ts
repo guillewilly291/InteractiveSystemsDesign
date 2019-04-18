@@ -19,7 +19,6 @@ import { RegisterPage } from '../pages/register/register';
 import { AuthProvider } from '../providers/auth/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Toast } from '@ionic-native/toast/ngx';
-import {BarcodeScannerOriginal} from '@ionic-native/barcode-scanner'
 
 
 
@@ -65,8 +64,7 @@ export const firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     AngularFireAuth,
-    Toast,
-    BarcodeScannerOriginal
+    Toast
     
   ]
 })
