@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import {RegisterPage} from '../register/register'
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AuthProvider } from '../../providers/auth/auth';
+import * as firebase from 'firebase/app';
 /**
  * Generated class for the LogInPage page.
  *
@@ -16,12 +17,13 @@ import { AuthProvider } from '../../providers/auth/auth';
   templateUrl: 'log-in.html',
 })
 export class LogInPage {
-  user = { email: '', password: '' };
+  user = { email: 'sergioCarmine2@gmail.com', password: 'mainkaisa2' };
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
       public db:AngularFireDatabase,
       public auth:AuthProvider,
-      public alertCtrl: AlertController) {
+      public alertCtrl: AlertController,
+    private toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
@@ -31,8 +33,41 @@ export class LogInPage {
     this.navCtrl.push(RegisterPage);
   }
   login() {
+    var usuario;
     this.auth.loginUser(this.user.email, this.user.password).then((user) => {
+      var keys = [];
+      var counts = [];
       
+      var users = this.db.database.ref('users/').on("value", function (snapshot) {
+          snapshot.forEach(function (item) {
+          var itemVal = item.val();
+          keys.push(itemVal);
+        });
+        
+        for (let i = 0; i < keys.length; i++) {          
+          var hola = firebase.auth().currentUser.email;
+          if (keys[i].id.toLocaleLowerCase() == firebase.auth().currentUser.email) {
+            usuario = keys[i].nombre;
+            break;
+          }else{
+            usuario=undefined;
+          }
+
+        }
+        console.log(snapshot.val());
+      }, function (error) {
+        console.log("Error: " + error.code);
+      });
+      debugger
+      if(usuario!=undefined){
+        const toast = this.toastCtrl.create({
+          message: 'Hola, '+usuario,
+          duration: 3000,
+          position: "top"
+        });
+        toast.present();
+      }
+
     }
     )
       .catch(err => {

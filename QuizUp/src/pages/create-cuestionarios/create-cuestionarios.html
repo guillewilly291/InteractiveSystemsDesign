@@ -1,0 +1,41 @@
+<!--
+  Generated template for the CreateCuestionariosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goToCrearPregunta()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Cuestionario</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <div>
+      <ion-input id="tituloCuestionario" placeholder="Nombre del cuestionario" [(ngModel)]="nombre" type="text" autocapitalize="true" required>
+      </ion-input>
+    </div>
+
+    <button ion-item *ngFor="let pregunta of cuestionario" >
+  
+      <h4 class="pregunta"><strong>{{pregunta.titulo}}</strong></h4>
+  
+      <p class="opcion"><strong>Opcion 1: </strong>{{pregunta.opcion1}}</p>
+  
+      <p class="opcion"><strong>Opción 2: </strong>{{pregunta.opcion2}}</p>
+  
+      <p class="opcion"><strong>Opción 3: </strong>{{pregunta.opcion3}}</p>
+      <p class="opcion"><strong>Opción 4: </strong>{{pregunta.opcion3}}</p>
+      <p class="opcion"><strong>Opción correcta: </strong>{{pregunta.correcta}}</p>
+  
+    </button>
+    <button ion-button block [disabled]="!hayPreguntas()" (click)="guardarCuestionario(nombre, cuestionario)">Guardar</button>
+  </ion-list>
+
+</ion-content>

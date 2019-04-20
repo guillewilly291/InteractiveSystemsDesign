@@ -18,7 +18,7 @@ export class AuthProvider {
   registerUser(email: string, password: string) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((res) => {
-        alert("El usuario se ha creado correctamente.")
+        
         
       })
       .catch(err => Promise.reject(err))

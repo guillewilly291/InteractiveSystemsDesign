@@ -1,0 +1,56 @@
+<!--
+  Generated template for the CrearPreguntaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Crear Pregunta</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <form (ngSubmit)="onAddCuestionario(value.titulo,value.op1,value.op2,value.op3,value.op4,value.correcta)" #f="ngForm">
+      <ion-list>  
+        <ion-item>
+          <ion-label floating>Título de la pregunta</ion-label>
+          <ion-input type="text" name="titulo" [(ngModel)]="value.titulo" required></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label floating>Opción 1</ion-label>
+          <ion-input type="text"  name="opcion1" [(ngModel)]="value.op1" required></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label floating>Opción 2</ion-label>
+          <ion-input type="text"  name="opcion2" [(ngModel)]="value.op2" required></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label floating>Opcion 3</ion-label>
+          <ion-input type="text"  name="opcion3" [(ngModel)]="value.op3"></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label floating>Opcion 4</ion-label>
+          <ion-input type="text"  name="opcion4" [(ngModel)]="value.op4"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating >Seleccione la respuesta correcta</ion-label>
+          <ion-select name="correcta" [(ngModel)]="value.correcta" requiered>
+            <ion-option value="1">Opción 1</ion-option>
+            <ion-option value="2">Opción 2</ion-option>
+            <ion-option value="3">Opción 3</ion-option>
+            <ion-option value="4">Opción 4</ion-option>
+          </ion-select>
+        </ion-item>
+        
+    
+      </ion-list>
+    
+      <button ion-button block type="submit" [disabled]="!validar(value.titulo,value.op1,value.op2,value.op3,value.op4,value.correcta)">Aceptar</button>
+    
+    </form>
+</ion-content>

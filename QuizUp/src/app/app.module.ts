@@ -1,8 +1,9 @@
+import { CuestionariosPage } from './../pages/cuestionarios/cuestionarios';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-
+import { HttpClientModule } from '@angular/common/http'; 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
@@ -19,6 +20,12 @@ import { RegisterPage } from '../pages/register/register';
 import { AuthProvider } from '../providers/auth/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Toast } from '@ionic-native/toast/ngx';
+import { TabsPage2 } from '../pages/tabs2/tabs2';
+import { StartCuestionarioPage } from '../pages/start-cuestionario/start-cuestionario';
+import { CreateCuestionariosPage } from '../pages/create-cuestionarios/create-cuestionarios';
+import { PreguntasProvider } from '../providers/preguntas/preguntas';
+import { CrearPreguntaPage } from '../pages/crear-pregunta/crear-pregunta';
+import { ResponderQuizPage } from '../pages/responder-quiz/responder-quiz';
 
 
 
@@ -39,14 +46,21 @@ export const firebaseConfig = {
     HomePage,
     TabsPage,
     LogInPage,
-    RegisterPage
+    RegisterPage,
+    TabsPage2,
+    CuestionariosPage,
+    CreateCuestionariosPage,
+    StartCuestionarioPage,
+    CrearPreguntaPage,
+    ResponderQuizPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    IonicPageModule.forChild(HomePage)
+    IonicPageModule.forChild(HomePage),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -56,7 +70,13 @@ export const firebaseConfig = {
     HomePage,
     TabsPage,
     LogInPage,
-    RegisterPage
+    RegisterPage,
+    TabsPage2,
+    CuestionariosPage, 
+    CreateCuestionariosPage,
+    StartCuestionarioPage,
+    CrearPreguntaPage,
+    ResponderQuizPage
   ],
   providers: [
     StatusBar,
@@ -64,7 +84,8 @@ export const firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     AngularFireAuth,
-    Toast
+    Toast,
+    PreguntasProvider
     
   ]
 })
