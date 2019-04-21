@@ -1,0 +1,28 @@
+<!--
+  Generated template for the EditarPerfilAlumnoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title> <ion-icon name="person"></ion-icon> Editar perfil</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <form (ngSubmit)="saveData(f.value.nombre)" #f="ngForm">
+    <ion-list>
+    
+      <ion-item>
+        <ion-label>Nombre</ion-label>
+        <ion-input type="text" name="nombre" ngModel></ion-input>
+      </ion-item>
+    
+    </ion-list>
+    
+    <button ion-button block type="submit" [disabled]="!f.valid"> Guardar   <ion-icon name="attach"></ion-icon> </button>
+  </form>
+
+</ion-content>

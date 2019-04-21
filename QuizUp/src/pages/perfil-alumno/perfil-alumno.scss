@@ -1,0 +1,24 @@
+page-perfil-alumno {
+
+    .fixedLabel {
+        min-width: 60% !important;
+        max-width: 60% !important;
+    }
+
+    .quizList{
+        border: 1px solid red;
+        margin-bottom: 15px;
+    }
+
+    .fixedListLabel {
+        min-width: 50% !important;
+        max-width: 65% !important;
+    }
+
+    .quizListPercentaje{
+        font-size: 170%;
+        font-family: 'Courier New', Courier, monospace;
+        text-align: end;
+    }
+
+}

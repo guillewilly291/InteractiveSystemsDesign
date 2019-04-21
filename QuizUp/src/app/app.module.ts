@@ -26,6 +26,9 @@ import { CreateCuestionariosPage } from '../pages/create-cuestionarios/create-cu
 import { PreguntasProvider } from '../providers/preguntas/preguntas';
 import { CrearPreguntaPage } from '../pages/crear-pregunta/crear-pregunta';
 import { ResponderQuizPage } from '../pages/responder-quiz/responder-quiz';
+import { QuizStatsProvider } from '../providers/quiz-stats/quiz-stats';
+import { PerfilAlumnoPage } from '../pages/perfil-alumno/perfil-alumno';
+import { EditarPerfilAlumnoPage } from '../pages/editar-perfil-alumno/editar-perfil-alumno';
 
 
 
@@ -52,7 +55,9 @@ export const firebaseConfig = {
     CreateCuestionariosPage,
     StartCuestionarioPage,
     CrearPreguntaPage,
-    ResponderQuizPage
+    ResponderQuizPage,
+    PerfilAlumnoPage,
+    EditarPerfilAlumnoPage
   ],
   imports: [
     BrowserModule,
@@ -76,7 +81,9 @@ export const firebaseConfig = {
     CreateCuestionariosPage,
     StartCuestionarioPage,
     CrearPreguntaPage,
-    ResponderQuizPage
+    ResponderQuizPage,
+    PerfilAlumnoPage,
+    EditarPerfilAlumnoPage
   ],
   providers: [
     StatusBar,
@@ -85,7 +92,8 @@ export const firebaseConfig = {
     AuthProvider,
     AngularFireAuth,
     Toast,
-    PreguntasProvider
+    PreguntasProvider,
+    QuizStatsProvider
     
   ]
 })
