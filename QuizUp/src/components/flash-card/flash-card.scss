@@ -15,7 +15,7 @@
         .flip-container, .front, .back {
             width: 90vw;
             height: 40vh;
-            margin: 20px auto;
+            margin: 7px auto;
         }
 
         /* flip speed goes here */
@@ -31,7 +31,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #ecf0f1;
+            background-color: #c7e0ffbd;
+            border-radius:9%;
             backface-visibility: hidden;
             -webkit-box-shadow: 0px 8px 4px -4px rgba(163,163,163,0.25);
             -moz-box-shadow: 0px 8px 4px -4px rgba(163,163,163,0.25);

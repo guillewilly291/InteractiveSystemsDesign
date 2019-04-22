@@ -30,6 +30,7 @@ import { PerfilAlumnoPage } from '../pages/perfil-alumno/perfil-alumno';
 import { EditarPerfilAlumnoPage } from '../pages/editar-perfil-alumno/editar-perfil-alumno';
 import { PerfilProfesorPage } from '../pages/perfil-profesor/perfil-profesor';
 import { FlashCardComponent } from '../components/flash-card/flash-card';
+import { EditarPerfilProfesorPage } from '../pages/editar-perfil-profesor/editar-perfil-profesor';
 
 
 
@@ -58,6 +59,7 @@ export const firebaseConfig = {
     ResponderQuizPage,
     PerfilAlumnoPage,
     EditarPerfilAlumnoPage,
+    EditarPerfilProfesorPage,
     PerfilProfesorPage,
     FlashCardComponent,
   ],
@@ -85,6 +87,7 @@ export const firebaseConfig = {
     ResponderQuizPage,
     PerfilAlumnoPage,
     EditarPerfilAlumnoPage,
+    EditarPerfilProfesorPage,
     PerfilProfesorPage,
   ],
   providers: [

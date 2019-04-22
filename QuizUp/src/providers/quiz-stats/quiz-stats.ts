@@ -23,4 +23,7 @@ export interface QuizStats {
   aciertos: number;
   totales: number;
   titulo: string;
+  propietario:string;
+  alumno:string;
+  id:number;
  }

@@ -1,8 +1,10 @@
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Pregunta } from '../../models/Pregunta.model';
 import firebase from 'firebase';
+import { EmpezarTestAlumnoPage } from '../empezar-test-alumno/empezar-test-alumno';
+
 /**
  * Generated class for the ResponderQuizPage page.
  *
@@ -28,13 +30,14 @@ export class ResponderQuizPage {
     tema:any;
     titulo:any;
     totales:any;
+    picToView: string = "assets/images/tick.png";
 
-    constructor(public navCtrl: NavController, private db: AngularFireDatabase) {
+  constructor(public navCtrl: NavController, private db: AngularFireDatabase, public navParams: NavParams) {
 
     }
 
     ionViewDidLoad() {
-      debugger
+      
       let tabs = document.querySelectorAll('.tabbar');
       if ( tabs !== null ) {
         Object.keys(tabs).map((key) => {
@@ -43,9 +46,9 @@ export class ResponderQuizPage {
         });
       }
 
-        var keys=[];
         this.slides.lockSwipes(true);
 
+        /*
         this.db.database.ref('cuestionarios/').on("value", function (snapshot) {
           snapshot.forEach(function (item) {
             var itemVal = item.val();
@@ -56,13 +59,16 @@ export class ResponderQuizPage {
           console.log(snapshot.val());
         }, function (error) {
           console.log("Error: " + error.code);
-        });
+        });*/
+        
         setTimeout(() => {
-            this.questions = keys[0].preguntas;
-            this.propietario=keys[0].propietario;
-            this.tema=keys[0].tema;
-            this.titulo=keys[0].nombre;
-            this.totales=keys[0].preguntas.length;
+            
+            var quiz = this.navParams.data;
+            this.questions = quiz.preguntas;
+            this.propietario=quiz.propietario;
+            this.tema=quiz.tema;
+            this.titulo=quiz.nombre;
+            this.totales=quiz.preguntas.length;
             //keys[0].preguntas = this.randomizeAnswers(originalOrder);
         }, 1000);
 
@@ -78,11 +84,15 @@ export class ResponderQuizPage {
 
         this.hasAnswered = true;
         //answer.selected = true;
+      if (question.correcta == answer) {
+        this.score++;
+        this.picToView = "assets/images/tick.png";
+      } else {
+        this.picToView = "assets/images/cross.png";
+      }
         question.flashCardFlipped = true;
 
-        if(question.correcta==answer){
-            this.score++;
-        }
+        
 
         setTimeout(() => {
             this.hasAnswered = false;
@@ -115,12 +125,15 @@ export class ResponderQuizPage {
     }
 
     finalizarQuiz(){
-      var value= {aciertos:this.score, fecha:new Date().getDate()+"/"+(new Date().getMonth()+1)+"/"+new Date().getFullYear(), propietario:this.propietario,tema:this.tema, totales:this.questions.length,titulo:this.titulo};
+      var value = { aciertos: this.score, fecha: new Date().getDate() + "/" + (new Date().getMonth() + 1) + "/" + new Date().getFullYear(), alumno: firebase.auth().currentUser.email, id: this.navParams.data.id,propietario:this.propietario,tema:this.tema, totales:this.questions.length,titulo:this.titulo};
       this.db.database.ref('quizStats/'+firebase.auth().currentUser.uid).push(value);
       //this.db.database.ref('quizStats/'+firebase.auth().currentUser.uid).set({aciertos:this.score, fecha:new Date().getDate()+"/"+(new Date().getMonth()+1)+"/"+new Date().getFullYear(), propietario:this.propietario,tema:this.tema, totales:this.questions.length});
-      this.navCtrl.pop();
+      //this.navCtrl.pop();
+      this.navCtrl.setRoot(EmpezarTestAlumnoPage);
     }
-
+    redondeo(value){
+      return Math.round(value * 100) / 10;
+    }
   
 
   

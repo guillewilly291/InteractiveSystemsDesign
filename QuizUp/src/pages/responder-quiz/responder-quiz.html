@@ -24,7 +24,7 @@
 
       <flash-card [isFlipped]="question.flashCardFlipped">
           <div class="flash-card-front" ><img src="assets/images/QuizUp.png" /></div>
-          <div class="flash-card-back" >Opcion correcta {{question.correcta}}</div>
+          <div class="flash-card-back" ><img class="imageCard" [src]="picToView" /><span id="opcionSpan">Opcion correcta {{question.correcta}}</span></div>
       </flash-card>
 
       <h3>{{question.titulo}}</h3>
@@ -33,34 +33,37 @@
 
           <ion-item >
 
-              <ion-label>1. {{question.opcion1}}</ion-label>
-              <ion-radio (click)="selectAnswer(1, question)" ></ion-radio>
+              <ion-label class="customLabel">1. {{question.opcion1}}</ion-label>
+              <ion-radio [disabled]="this.hasAnswered" (click)="selectAnswer(1, question)" ></ion-radio>
 
           </ion-item>
           <ion-item >
 
-              <ion-label>2. {{question.opcion2}}</ion-label>
-              <ion-radio (click)="selectAnswer(2, question)" ></ion-radio>
+              <ion-label class="customLabel">2. {{question.opcion2}}</ion-label>
+              <ion-radio [disabled]="this.hasAnswered" (click)="selectAnswer(2, question)" ></ion-radio>
 
           </ion-item>
            <ion-item >
-              <ion-label>3. {{question.opcion3}}</ion-label>
-              <ion-radio (click)="selectAnswer(3, question)" ></ion-radio>
+              <ion-label class="customLabel">3. {{question.opcion3}}</ion-label>
+              <ion-radio [disabled]="this.hasAnswered" (click)="selectAnswer(3, question)" ></ion-radio>
           </ion-item>
           <ion-item >
-            <ion-label>4. {{question.opcion4}}</ion-label>
-            <ion-radio (click)="selectAnswer(4, question)" ></ion-radio>
+            <ion-label class="customLabel">4. {{question.opcion4}}</ion-label>
+            <ion-radio [disabled]="this.hasAnswered" (click)="selectAnswer(4, question)" ></ion-radio>
           </ion-item>
+          <h2>Aciertos: {{score}}</h2>
 
       </ion-list>
 
     </ion-slide>
 
     <ion-slide>
-      <h2>Final Score: {{score}}</h2>
-
+      <h2>Preguntas acertadas: {{score}} de {{totales}}</h2>
+      <h2>Nota: {{redondeo(score/totales)}} / 10</h2>
       <button (click)="finalizarQuiz()" ion-button color="secondary">Finalizar quiz</button>
-
+      
+      
+      
     </ion-slide>
 
     

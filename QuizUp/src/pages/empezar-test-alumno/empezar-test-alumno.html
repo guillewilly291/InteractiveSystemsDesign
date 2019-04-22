@@ -14,7 +14,7 @@
   <ion-list>
       <h3 id="title">Introducir código</h3>
       <ion-item>
-        <input type="text" class="input-field" name="field1" value="" />
+        <input type="text" class="input-field" [(ngModel)]="nombre" name="field1" value="" />
         <button ion-button (click)="empezarQuiz()" style="float:right; height:27px;margin-right: 67px;margin-top: 4px" >Quiz Up!</button>
 
       </ion-item>

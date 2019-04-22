@@ -6,15 +6,58 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>perfil-profesor</ion-title>
+    
+    <ion-title> <ion-icon name="school"></ion-icon> Profesor</ion-title>
+
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
   </ion-navbar>
-
-  <button ion-button menuToggle>
-    <ion-icon name="menu"></ion-icon>
-  </button>
-
 </ion-header>
 
+
 <ion-content padding>
+
+  <ion-item>
+    <ion-label>
+
+        <img src="../../assets/images/userFoto.png" class="userFoto">
+
+    </ion-label>
+
+    <ion-label fixed class='fixedLabel'> 
+      <H1> {{ userName }} </H1>
+      <H2> {{ userEmail }} </H2>
+    </ion-label>
+
+    <ion-label>
+      <button ion-button icon-only (click)="editData()">
+        <ion-icon name="create"></ion-icon>
+      </button>
+
+    </ion-label>
+  </ion-item>
+
+
+  <H1> QuizUp creados </H1>
+
+  <ion-list>
+
+    <button ion-item *ngFor="let quiz of quizStats$ | async" class="quizList">
+
+      <ion-label>
+        <p><strong>Quiz: </strong>{{quiz.tema}}</p>
+        <p><strong>Realizado el: </strong>{{quiz.fecha}}</p>
+      </ion-label>
+
+      <ion-label fixed class='fixedListLabel'>
+        <p class="quizListNota"><strong>Nota:</strong></p>
+        <H2 class="quizListScore">{{ redondeo(quiz.aciertos / quiz.totales * 100)/10 }}</H2>
+      </ion-label>
+
+    </button>
+
+  </ion-list>
 
 </ion-content>

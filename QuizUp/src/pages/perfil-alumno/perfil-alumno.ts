@@ -27,8 +27,6 @@ export class PerfilAlumnoPage {
   userEmail: string ="";
   userKey: string ="";
 
-  arQuiz: QuizStats[]=[];
-
   private contactsRef=this.db.list<QuizStats>('quizStats/'+this.db.database.app.auth().currentUser.uid);
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public db: AngularFireDatabase) {

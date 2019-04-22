@@ -1,3 +1,29 @@
 page-perfil-profesor {
 
+    .fixedLabel {
+        min-width: 60% !important;
+        max-width: 60% !important;
+    }
+
+    .fixedListLabel {
+        min-width: 30% !important;
+        max-width: 30% !important;
+    }
+
+    .quizListNota{
+        text-align: center;
+    }
+
+    .quizListScore{
+        font-size: 170%;
+        font-family: 'Courier New', Courier, monospace;
+        text-align: end;
+    }
+
+    .userFoto{
+        height: 13vw;
+        width: 13vw;
+        border-radius: 50%;
+    }
+
 }

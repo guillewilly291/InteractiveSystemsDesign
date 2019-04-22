@@ -34,7 +34,6 @@ export class CreateCuestionariosPage {
     this.navCtrl.push(CrearPreguntaPage)
   }
   hayPreguntas(){
-    debugger
     if(this.cuestionario.length==0){
       return false;
     }else{
@@ -43,12 +42,31 @@ export class CreateCuestionariosPage {
   }
 
   guardarCuestionario(nombre,tema, cuest){
-    debugger
-    this.db.database.ref('cuestionarios/' + firebase.auth().currentUser.uid+nombre).set({ propietario:firebase.auth().currentUser.email,nombre: nombre, preguntas: cuest, fechaCreacion: new Date().getDate()+"/"+(new Date().getMonth()+1)+"/"+new Date().getFullYear(),tema:tema});
+    
+    var contador=0;
+    var keys = [];
+    this.db.database.ref('cuestionarios/').on("value", function (snapshot) {
+      snapshot.forEach(function (item) {
+        var itemVal = item.val();
+        keys.push(itemVal);
+        
+      });
+
+      console.log(snapshot.val());
+    }, function (error) { 
+      console.log("Error: " + error.code);
+    });
+    setTimeout(() => {
+      contador= keys[keys.length-1].id +4;
+    
+    
+    this.db.database.ref('cuestionarios/' + firebase.auth().currentUser.uid+nombre).set({ propietario:firebase.auth().currentUser.email,id: contador,nombre: nombre, preguntas: cuest, fechaCreacion: new Date().getDate()+"/"+(new Date().getMonth()+1)+"/"+new Date().getFullYear(),tema:tema});
+    }, 1000);
     const toast = this.toastCtrl.create({
       message: 'El cuestionario se ha guardado correctamente',
       duration: 3000
     });
+    
     toast.present();
     this.preguntaProvider.removeCuestionario();
     this.navCtrl.pop();
