@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>responderQuiz</ion-title>
+    <ion-title>Responder Quiz</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -15,26 +15,42 @@
   <ion-slides #slides>
 
     <ion-slide class="start-slide">
-      <button ion-button color="primary" (click)="nextSlide()">Start!</button>
+      <button ion-button color="primary" (click)="nextSlide()">QuizUP!</button>
     </ion-slide>
 
-    <ion-slide *ngFor="let question of questions; let i = index;">
+    <ion-slide style="align-items: flex-start;" *ngFor="let question of questions; let i = index;">
 
-      <h3>Question {{i+1}}</h3>
+      <h3>Pregunta {{i+1}} de {{totales}}</h3>
 
-      
+      <flash-card [isFlipped]="question.flashCardFlipped">
+          <div class="flash-card-front" ><img src="assets/images/QuizUp.png" /></div>
+          <div class="flash-card-back" >Opcion correcta {{question.correcta}}</div>
+      </flash-card>
 
-      <h3>{{question.questionText}}</h3>
+      <h3>{{question.titulo}}</h3>
 
-      <ion-list no-lines radio-group>
+      <ion-list radio-group>
 
-        <ion-item *ngFor="let answer of question.answers; let i = index;">
+          <ion-item >
 
-          <ion-label>{{i+1}}. {{answer.answer}}</ion-label>
-          <ion-radio (click)="selectAnswer(answer, question)" [checked]="answer.selected" [disabled]="hasAnswered">
-          </ion-radio>
+              <ion-label>1. {{question.opcion1}}</ion-label>
+              <ion-radio (click)="selectAnswer(1, question)" ></ion-radio>
 
-        </ion-item>
+          </ion-item>
+          <ion-item >
+
+              <ion-label>2. {{question.opcion2}}</ion-label>
+              <ion-radio (click)="selectAnswer(2, question)" ></ion-radio>
+
+          </ion-item>
+           <ion-item >
+              <ion-label>3. {{question.opcion3}}</ion-label>
+              <ion-radio (click)="selectAnswer(3, question)" ></ion-radio>
+          </ion-item>
+          <ion-item >
+            <ion-label>4. {{question.opcion4}}</ion-label>
+            <ion-radio (click)="selectAnswer(4, question)" ></ion-radio>
+          </ion-item>
 
       </ion-list>
 
@@ -43,9 +59,11 @@
     <ion-slide>
       <h2>Final Score: {{score}}</h2>
 
-      <button (click)="restartQuiz()" ion-button full color="primary">Start Again</button>
+      <button (click)="finalizarQuiz()" ion-button color="secondary">Finalizar quiz</button>
 
     </ion-slide>
+
+    
 
   </ion-slides>
 

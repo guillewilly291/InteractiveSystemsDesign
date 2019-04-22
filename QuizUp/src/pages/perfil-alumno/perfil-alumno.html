@@ -47,13 +47,14 @@
 
     <button ion-item *ngFor="let quiz of quizStats$ | async" class="quizList">
 
-      <ion-label fixed class='fixedListLabel'>
+      <ion-label>
         <p><strong>Quiz: </strong>{{quiz.tema}}</p>
         <p><strong>Realizado el: </strong>{{quiz.fecha}}</p>
       </ion-label>
 
-      <ion-label>
-        <H2 class="quizListPercentaje">{{ redondeo(quiz.aciertos / quiz.totales * 100) }} %</H2>
+      <ion-label fixed class='fixedListLabel'>
+        <p class="quizListNota"><strong>Nota:</strong></p>
+        <H2 class="quizListScore">{{ redondeo(quiz.aciertos / quiz.totales * 100)/10 }}</H2>
       </ion-label>
 
     </button>

@@ -2,11 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { NavController, IonicPage } from 'ionic-angular';
-import { TabsPage } from '../pages/tabs/tabs';
-import { TabsPage2 } from '../pages/tabs2/tabs2'
+import { NavController } from 'ionic-angular';
+import { TabsAlumnoPage } from '../pages/tabs-alumno/tabs-alumno';
+import { TabsProfesorPage } from '../pages/tabs-profesor/tabs-profesor'
 import { LogInPage } from '../pages/log-in/log-in';
-import {HomePage} from '../pages/home/home'
 import { AuthProvider } from '../providers/auth/auth';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -28,16 +27,15 @@ export class MyApp {
       this.auth.Session.subscribe(session => {
         if (session) {
           var keys = [];
-          var counts = [];
           var rol;
-          var users = this.db.database.ref('users/').on("value", function (snapshot) {
+
+          this.db.database.ref('users/').on("value", function (snapshot) {
             snapshot.forEach(function (item) {
               var itemVal = item.val();
               keys.push(itemVal);
             });
             
             for (let i = 0; i < keys.length; i++) {
-              var hola = firebase.auth().currentUser.email;
               if (keys[i].id.toLocaleLowerCase() == firebase.auth().currentUser.email) {
                 rol = keys[i].rol;
                 break;
@@ -53,9 +51,9 @@ export class MyApp {
           
           setTimeout(() => {
             if (rol == 'P') {
-              this.rootPage = TabsPage2;
+              this.rootPage = TabsProfesorPage;
             } else if (rol == 'A') {
-              this.rootPage = TabsPage;
+              this.rootPage = TabsAlumnoPage;
             }
           }, 1000);
          

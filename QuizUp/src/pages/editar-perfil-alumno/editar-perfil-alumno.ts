@@ -32,11 +32,9 @@ export class EditarPerfilAlumnoPage {
     let userRef = this.db.database.ref('users/' + this.userKey);
       userRef.update({'nombre': nombre})
 
-    //this.navCtrl.pop();
+    this.navCtrl.remove(1);
+    this.navCtrl.setRoot(PerfilAlumnoPage);
     
-    this.navCtrl.push(PerfilAlumnoPage);
-    this.navCtrl.remove(1);
-    this.navCtrl.remove(1);
   }
 
 }

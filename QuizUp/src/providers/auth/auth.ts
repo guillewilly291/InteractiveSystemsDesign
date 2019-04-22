@@ -1,8 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
-import { Toast } from '@ionic-native/toast/ngx';
+
 /*
   Generated class for the AuthProvider provider.
 
@@ -12,7 +10,7 @@ import { Toast } from '@ionic-native/toast/ngx';
 @Injectable()
 export class AuthProvider {
 
-  constructor(private afAuth: AngularFireAuth, private toast: Toast) {
+  constructor(private afAuth: AngularFireAuth) {
     console.log('Hello AuthProvider Provider');
   }
   registerUser(email: string, password: string) {

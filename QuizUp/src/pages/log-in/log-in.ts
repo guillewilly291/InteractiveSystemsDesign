@@ -17,7 +17,7 @@ import * as firebase from 'firebase/app';
   templateUrl: 'log-in.html',
 })
 export class LogInPage {
-  user = { email: 'sergioCarmine2@gmail.com', password: 'mainkaisa2' };
+  user = { email: '', password: '' };
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
       public db:AngularFireDatabase,
@@ -36,16 +36,14 @@ export class LogInPage {
     var usuario;
     this.auth.loginUser(this.user.email, this.user.password).then((user) => {
       var keys = [];
-      var counts = [];
       
-      var users = this.db.database.ref('users/').on("value", function (snapshot) {
+      this.db.database.ref('users/').on("value", function (snapshot) {
           snapshot.forEach(function (item) {
           var itemVal = item.val();
           keys.push(itemVal);
         });
         
         for (let i = 0; i < keys.length; i++) {          
-          var hola = firebase.auth().currentUser.email;
           if (keys[i].id.toLocaleLowerCase() == firebase.auth().currentUser.email) {
             usuario = keys[i].nombre;
             break;

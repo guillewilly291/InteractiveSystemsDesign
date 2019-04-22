@@ -1,5 +1,4 @@
 
-import { TabsPage } from './../tabs/tabs';
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, Nav } from 'ionic-angular';
 
@@ -18,14 +17,14 @@ export interface PageInterface {
 })
 export class MenuPage {
   // Basic root for our content view
-  rootPage = 'TabsPage';
+  rootPage = 'TabsAlumnoPage';
 
   // Reference to the app's root nav
   @ViewChild(Nav) nav: Nav;
 
   pages: PageInterface[] = [
-    { title: 'Ajustes', pageName: 'TabsPage', tabComponent: 'Tab1Page', index: 0, icon: 'home' },
-    { title: 'Acerca de', pageName: 'TabsPage', tabComponent: 'Tab2Page', index: 1, icon: 'contacts' },
+    { title: 'Ajustes', pageName: 'TabsAlumnoPage', tabComponent: 'Tab1Page', index: 0, icon: 'home' },
+    { title: 'Acerca de', pageName: 'TabsAlumnoPage', tabComponent: 'Tab2Page', index: 1, icon: 'contacts' },
     { title: 'Cerrar sesión', pageName: 'SpecialPage', icon: 'shuffle' },
   ];
 

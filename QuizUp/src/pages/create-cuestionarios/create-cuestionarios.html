@@ -18,7 +18,12 @@
 <ion-content padding>
   <ion-list>
     <div>
-      <ion-input id="tituloCuestionario" placeholder="Nombre del cuestionario" [(ngModel)]="nombre" type="text" autocapitalize="true" required>
+      <ion-input class="tituloCuestionario" placeholder="Nombre del cuestionario" [(ngModel)]="nombre" type="text" autocapitalize="true" required>
+      </ion-input>
+    </div>
+
+    <div>
+      <ion-input class="tituloCuestionario" placeholder="Tema del cuestionario" [(ngModel)]="tema" type="text" autocapitalize="true" required>
       </ion-input>
     </div>
 
@@ -31,11 +36,11 @@
       <p class="opcion"><strong>Opción 2: </strong>{{pregunta.opcion2}}</p>
   
       <p class="opcion"><strong>Opción 3: </strong>{{pregunta.opcion3}}</p>
-      <p class="opcion"><strong>Opción 4: </strong>{{pregunta.opcion3}}</p>
+      <p class="opcion"><strong>Opción 4: </strong>{{pregunta.opcion4}}</p>
       <p class="opcion"><strong>Opción correcta: </strong>{{pregunta.correcta}}</p>
   
     </button>
-    <button ion-button block [disabled]="!hayPreguntas()" (click)="guardarCuestionario(nombre, cuestionario)">Guardar</button>
+    <button ion-button block [disabled]="!hayPreguntas()" (click)="guardarCuestionario(nombre, tema, cuestionario)">Guardar</button>
   </ion-list>
 
 </ion-content>

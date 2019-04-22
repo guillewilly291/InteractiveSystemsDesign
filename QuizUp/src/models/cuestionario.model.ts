@@ -5,4 +5,5 @@ export class Cuestionario{
     nombre: String;
     preguntas:Pregunta[];
     propietario: String;
+    tema: String;
 }

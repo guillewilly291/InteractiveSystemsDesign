@@ -20,6 +20,7 @@ export interface QuizStats {
   key?: string;//manejará el id cuando se utiliza firebase
   tema: string;
   fecha: string;
-  aciertos: string;
-  totales: string;
+  aciertos: number;
+  totales: number;
+  titulo: string;
  }

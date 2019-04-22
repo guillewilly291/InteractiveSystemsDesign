@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { isAdmin } from '@firebase/util';
-import { Toast } from '@ionic-native/toast/ngx';
 import { AuthProvider } from '../../providers/auth/auth';
-import { HomePage } from '../home/home';
 import firebase from 'firebase';
 /**
  * Generated class for the RegisterPage page.
@@ -41,7 +38,7 @@ export class RegisterPage {
            duration: 3000
          });
          toast.present();
-         this.navCtrl.push(HomePage);
+         //this.navCtrl.push(HomePage);
        })
        .catch(err => {
          let alert = this.alertCtrl.create({

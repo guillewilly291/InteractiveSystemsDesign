@@ -4,10 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpClientModule } from '@angular/common/http'; 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+import { EmpezarTestAlumnoPage } from '../pages/empezar-test-alumno/empezar-test-alumno';
 import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
+import { TabsAlumnoPage } from '../pages/tabs-alumno/tabs-alumno';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -20,7 +19,7 @@ import { RegisterPage } from '../pages/register/register';
 import { AuthProvider } from '../providers/auth/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Toast } from '@ionic-native/toast/ngx';
-import { TabsPage2 } from '../pages/tabs2/tabs2';
+import { TabsProfesorPage } from '../pages/tabs-profesor/tabs-profesor';
 import { StartCuestionarioPage } from '../pages/start-cuestionario/start-cuestionario';
 import { CreateCuestionariosPage } from '../pages/create-cuestionarios/create-cuestionarios';
 import { PreguntasProvider } from '../providers/preguntas/preguntas';
@@ -29,6 +28,8 @@ import { ResponderQuizPage } from '../pages/responder-quiz/responder-quiz';
 import { QuizStatsProvider } from '../providers/quiz-stats/quiz-stats';
 import { PerfilAlumnoPage } from '../pages/perfil-alumno/perfil-alumno';
 import { EditarPerfilAlumnoPage } from '../pages/editar-perfil-alumno/editar-perfil-alumno';
+import { PerfilProfesorPage } from '../pages/perfil-profesor/perfil-profesor';
+import { FlashCardComponent } from '../components/flash-card/flash-card';
 
 
 
@@ -44,20 +45,21 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    EmpezarTestAlumnoPage,
     HomePage,
-    TabsPage,
+    TabsAlumnoPage,
     LogInPage,
     RegisterPage,
-    TabsPage2,
+    TabsProfesorPage,
     CuestionariosPage,
     CreateCuestionariosPage,
     StartCuestionarioPage,
     CrearPreguntaPage,
     ResponderQuizPage,
     PerfilAlumnoPage,
-    EditarPerfilAlumnoPage
+    EditarPerfilAlumnoPage,
+    PerfilProfesorPage,
+    FlashCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,20 +72,20 @@ export const firebaseConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    EmpezarTestAlumnoPage,
     HomePage,
-    TabsPage,
+    TabsAlumnoPage,
     LogInPage,
     RegisterPage,
-    TabsPage2,
+    TabsProfesorPage,
     CuestionariosPage, 
     CreateCuestionariosPage,
     StartCuestionarioPage,
     CrearPreguntaPage,
     ResponderQuizPage,
     PerfilAlumnoPage,
-    EditarPerfilAlumnoPage
+    EditarPerfilAlumnoPage,
+    PerfilProfesorPage,
   ],
   providers: [
     StatusBar,

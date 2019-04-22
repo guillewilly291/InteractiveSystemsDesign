@@ -29,9 +29,8 @@ export class StartCuestionarioPage {
   getDatos(){
     console.log('ionViewDidLoad StartCuestionarioPage');
     var keys = [];
-    var counts = [];
 
-    var users = this.db.database.ref('cuestionarios/').on("value", function (snapshot) {
+    this.db.database.ref('cuestionarios/').on("value", function (snapshot) {
       snapshot.forEach(function (item) {
         var itemVal = item.val();
         keys.push(itemVal);

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { ThrowStmt } from '@angular/compiler';
 import { CrearPreguntaPage } from '../crear-pregunta/crear-pregunta';
 import { Pregunta } from '../../models/Pregunta.model';
 import { PreguntasProvider } from '../../providers/preguntas/preguntas';
@@ -43,9 +42,9 @@ export class CreateCuestionariosPage {
     }
   }
 
-  guardarCuestionario(nombre, cuest){
+  guardarCuestionario(nombre,tema, cuest){
     debugger
-    this.db.database.ref('cuestionarios/' + firebase.auth().currentUser.uid+nombre).set({ propietario:firebase.auth().currentUser.email,nombre: nombre, preguntas: cuest, fechaCreacion: new Date().getDate()+"/"+(new Date().getMonth()+1)+"/"+new Date().getFullYear()});
+    this.db.database.ref('cuestionarios/' + firebase.auth().currentUser.uid+nombre).set({ propietario:firebase.auth().currentUser.email,nombre: nombre, preguntas: cuest, fechaCreacion: new Date().getDate()+"/"+(new Date().getMonth()+1)+"/"+new Date().getFullYear(),tema:tema});
     const toast = this.toastCtrl.create({
       message: 'El cuestionario se ha guardado correctamente',
       duration: 3000

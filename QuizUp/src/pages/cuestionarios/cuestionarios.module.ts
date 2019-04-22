@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
-import { IonicPageModule, NavController } from 'ionic-angular';
+import { IonicPageModule } from 'ionic-angular';
 import { CuestionariosPage } from './cuestionarios';
-import { CreateCuestionariosPage } from '../create-cuestionarios/create-cuestionarios';
-import { StartCuestionarioPage } from '../start-cuestionario/start-cuestionario';
 
 @NgModule({
   declarations: [
