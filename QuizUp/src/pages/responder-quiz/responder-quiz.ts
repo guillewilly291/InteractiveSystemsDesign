@@ -53,7 +53,7 @@ export class ResponderQuizPage {
           snapshot.forEach(function (item) {
             var itemVal = item.val();
             keys.push(itemVal);
-            debugger
+            
           });
         
           console.log(snapshot.val());

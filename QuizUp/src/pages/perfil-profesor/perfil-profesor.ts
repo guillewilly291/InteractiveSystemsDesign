@@ -38,7 +38,7 @@ export class PerfilProfesorPage {
       changes => {return changes.map(c=> ({key: c.payload.key, ...c.payload.val()}));
       });
 
-    debugger
+    
 
     this.getData();
   }
@@ -52,10 +52,10 @@ export class PerfilProfesorPage {
     var userKey="";
     var userName="";
 
-    debugger
+    
 
     this.db.database.ref('users').on("value", function(snapshot) {
-      debugger
+      
       snapshot.forEach(function(item) {
           if( item.val().id == email ){
             userKey = item.key;
@@ -75,7 +75,7 @@ export class PerfilProfesorPage {
     console.log(userKey);
      
    }, 1000);*/
-   debugger
+   
     
     this.userName = userName;
     this.userKey = userKey;

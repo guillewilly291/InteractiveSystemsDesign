@@ -20,7 +20,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 })
 export class CreateCuestionariosPage {
   cuestionario: Pregunta[]=[];
-  nombre;
+  nombre:string;
+  tema:string;
   constructor(public navCtrl: NavController, public navParams: NavParams, private preguntaProvider: PreguntasProvider, public db:AngularFireDatabase, public toastCtrl: ToastController) {
   }
 
@@ -57,7 +58,12 @@ export class CreateCuestionariosPage {
       console.log("Error: " + error.code);
     });
     setTimeout(() => {
-      contador= keys[keys.length-1].id +4;
+      max=0;
+      for (let i = 0; i < keys.length; i++) {
+        var max=Math.max(keys[i].id,max);
+        
+      }
+      contador= max +4;
     
     
     this.db.database.ref('cuestionarios/' + firebase.auth().currentUser.uid+nombre).set({ propietario:firebase.auth().currentUser.email,id: contador,nombre: nombre, preguntas: cuest, fechaCreacion: new Date().getDate()+"/"+(new Date().getMonth()+1)+"/"+new Date().getFullYear(),tema:tema});

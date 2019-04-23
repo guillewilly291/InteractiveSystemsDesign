@@ -56,7 +56,7 @@ export class LogInPage {
       }, function (error) {
         console.log("Error: " + error.code);
       });
-      debugger
+      
       if(usuario!=undefined){
         const toast = this.toastCtrl.create({
           message: 'Hola, '+usuario,

@@ -12,7 +12,7 @@
 
 <ion-content padding>
   
-    <ion-card class="card" *ngFor="let cues of cuestionario">
+    <ion-card class="card" *ngFor="let cues of cuestionario; let i= index" (click)="goToDetail(i)">
       <ion-card-header>
         {{cues.nombre}}
       </ion-card-header>

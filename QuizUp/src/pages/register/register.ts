@@ -31,7 +31,7 @@ export class RegisterPage {
    addUserToDataBase(nombre, email, password, rol) {
      this.auth.registerUser(email, password)
        .then((user) => {
-         debugger
+         
          this.db.database.ref('users/'+firebase.auth().currentUser.uid).set({nombre:nombre, id:email, rol:rol});
          const toast = this.toastCtrl.create({
            message: 'El usuario se ha creado correctamente',

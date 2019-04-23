@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 import { ResponderQuizPage } from '../responder-quiz/responder-quiz';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Cuestionario } from '../../models/cuestionario.model';
+import { BarcodeScannerOptions, BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 /**
  * Generated class for the EmpezarTestAlumnoPage page.
@@ -12,24 +13,58 @@ import { Cuestionario } from '../../models/cuestionario.model';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+
 @Component({
   selector: 'page-empezar-test-alumno',
   templateUrl: 'empezar-test-alumno.html',
 })
 export class EmpezarTestAlumnoPage {
   nombre:string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public db: AngularFireDatabase, public toastCtrl: ToastController) {
+  encodeData: any;
+  scannedData: {};
+  barcodeScannerOptions: BarcodeScannerOptions;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public db: AngularFireDatabase, public toastCtrl: ToastController, private barcodeScanner: BarcodeScanner) {
+    this.encodeData = "https://www.FreakyJolly.com";
+    //Options
+    this.barcodeScannerOptions = {
+      showTorchButton: true,
+      showFlipCameraButton: true
+    };
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EmpezarTestAlumnoPage');
   }
+  scanCode() {
+    this.barcodeScanner
+      .scan()
+      .then(barcodeData => {
+        alert("Barcode data " + JSON.stringify(barcodeData));
+        this.scannedData = barcodeData;
+      })
+      .catch(err => {
+        console.log("Error", err);
+      });
+  }
+   encodedText() {
+     debugger
+    this.barcodeScanner
+      .encode(this.barcodeScanner.Encode.TEXT_TYPE, this.encodeData)
+      .then(
+        encodedData => {
+          console.log(encodedData);
+          this.encodeData = encodedData;
+        },
+        err => {
+          console.log("Error occured : " + err);
+        }
+      );
+  }
 
   empezarQuiz(){
     var keys = [];
     var cuestionario: Cuestionario[];
-    debugger
+    
     if(this.nombre!=undefined){
       this.nombre=this.nombre.replace(" ",'');
     }

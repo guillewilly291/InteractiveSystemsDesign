@@ -24,7 +24,7 @@ export class CrearPreguntaPage {
     console.log('ionViewDidLoad CrearPreguntaPage');
   }
 onAddCuestionario( titulo, op1, op2, op3, op4, corr){
-  debugger
+  
     var value:Pregunta= { titulo: titulo, opcion1: op1, opcion2: op2, opcion3: op3, opcion4: op4 , correcta:parseInt(corr)} 
     this.preguntaProvider.addPregunta(value);
     this.navCtrl.pop();

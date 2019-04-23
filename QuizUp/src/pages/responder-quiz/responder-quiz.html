@@ -18,7 +18,7 @@
       <button ion-button color="primary" (click)="nextSlide()">QuizUP!</button>
     </ion-slide>
 
-    <ion-slide style="align-items: flex-start;" *ngFor="let question of questions; let i = index;">
+    <ion-slide id="slide" style="align-items: flex-start;" *ngFor="let question of questions; let i = index;">
 
       <h3>Pregunta {{i+1}} de {{totales}}</h3>
 

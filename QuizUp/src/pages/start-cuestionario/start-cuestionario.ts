@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import firebase from 'firebase';
 import { Cuestionario } from '../../models/cuestionario.model';
+import { CodigoPage} from '../codigo/codigo'
 
 /**
  * Generated class for the StartCuestionarioPage page.
@@ -25,6 +26,9 @@ export class StartCuestionarioPage {
    this.getDatos();
 
 
+  }
+  goToDetail(i){
+    this.navCtrl.push(CodigoPage,this.cuestionario[i]);
   }
   getDatos(){
     console.log('ionViewDidLoad StartCuestionarioPage');

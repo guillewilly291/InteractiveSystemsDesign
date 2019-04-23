@@ -31,7 +31,9 @@ import { EditarPerfilAlumnoPage } from '../pages/editar-perfil-alumno/editar-per
 import { PerfilProfesorPage } from '../pages/perfil-profesor/perfil-profesor';
 import { FlashCardComponent } from '../components/flash-card/flash-card';
 import { EditarPerfilProfesorPage } from '../pages/editar-perfil-profesor/editar-perfil-profesor';
-
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { FormsModule } from '@angular/forms';
+import { CodigoPage } from '../pages/codigo/codigo';
 
 
 export const firebaseConfig = {
@@ -62,6 +64,7 @@ export const firebaseConfig = {
     EditarPerfilProfesorPage,
     PerfilProfesorPage,
     FlashCardComponent,
+    CodigoPage
   ],
   imports: [
     BrowserModule,
@@ -69,7 +72,8 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     IonicPageModule.forChild(HomePage),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -89,6 +93,7 @@ export const firebaseConfig = {
     EditarPerfilAlumnoPage,
     EditarPerfilProfesorPage,
     PerfilProfesorPage,
+    CodigoPage
   ],
   providers: [
     StatusBar,
@@ -98,7 +103,8 @@ export const firebaseConfig = {
     AngularFireAuth,
     Toast,
     PreguntasProvider,
-    QuizStatsProvider
+    QuizStatsProvider,
+    BarcodeScanner
     
   ]
 })
