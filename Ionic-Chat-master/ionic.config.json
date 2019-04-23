@@ -1,7 +1,0 @@
-{
-  "name": "Ionic-Chat-master",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "angular"
-}
