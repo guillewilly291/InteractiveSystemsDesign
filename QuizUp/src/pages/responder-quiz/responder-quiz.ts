@@ -30,6 +30,10 @@ export class ResponderQuizPage {
     tema:any;
     titulo:any;
     totales:any;
+    intentos:number;
+    aciertos:number;
+    id:number;
+    aprobados:number;
     picToView: string = "assets/images/tick.png";
 
   constructor(public navCtrl: NavController, private db: AngularFireDatabase, public navParams: NavParams) {
@@ -69,6 +73,10 @@ export class ResponderQuizPage {
             this.tema=quiz.tema;
             this.titulo=quiz.nombre;
             this.totales=quiz.preguntas.length;
+            this.intentos=quiz.totalIntentos;
+            this.aciertos=quiz.aciertosTotales;
+            this.id=quiz.id;
+            this.aprobados=quiz.aprobados;
             //keys[0].preguntas = this.randomizeAnswers(originalOrder);
         }, 1000);
 
@@ -125,11 +133,40 @@ export class ResponderQuizPage {
     }
 
     finalizarQuiz(){
-      var value = { aciertos: this.score, fecha: new Date().getDate() + "/" + (new Date().getMonth() + 1) + "/" + new Date().getFullYear(), alumno: firebase.auth().currentUser.email, id: this.navParams.data.id,propietario:this.propietario,tema:this.tema, totales:this.questions.length,titulo:this.titulo};
-      this.db.database.ref('quizStats/'+firebase.auth().currentUser.uid).push(value);
-      //this.db.database.ref('quizStats/'+firebase.auth().currentUser.uid).set({aciertos:this.score, fecha:new Date().getDate()+"/"+(new Date().getMonth()+1)+"/"+new Date().getFullYear(), propietario:this.propietario,tema:this.tema, totales:this.questions.length});
-      //this.navCtrl.pop();
-      this.navCtrl.setRoot(EmpezarTestAlumnoPage);
+      var keys=[];
+      var ID=this.id;
+      this.db.database.ref('cuestionarios/').on("value", function (snapshot) {
+        snapshot.forEach(function (item) {
+          var itemVal = item.val();
+          if(itemVal.id==ID){
+            
+            keys.push(item.key);
+          }     
+          
+        });
+      
+        console.log(snapshot.val());
+      }, function (error) {
+        console.log("Error: " + error.code);
+      });
+
+      setTimeout(() => {
+        if((this.score/this.totales)*10>=5){
+          this.aprobados++;
+        }
+        var aciertosAct= this.aciertos+this.score;
+        this.intentos++;
+        let userRef = this.db.database.ref('cuestionarios/' + keys[0]);
+        userRef.update({'aciertosTotales': aciertosAct})
+        userRef.update({'aprobados': this.aprobados})
+        userRef.update({'totalIntentos': this.intentos})
+        var value = { aciertos: this.score, fecha: new Date().getDate() + "/" + (new Date().getMonth() + 1) + "/" + new Date().getFullYear(), alumno: firebase.auth().currentUser.email, id: this.navParams.data.id,propietario:this.propietario,tema:this.tema, totales:this.questions.length,titulo:this.titulo};
+        this.db.database.ref('quizStats/'+firebase.auth().currentUser.uid).push(value);
+        //this.db.database.ref('quizStats/'+firebase.auth().currentUser.uid).set({aciertos:this.score, fecha:new Date().getDate()+"/"+(new Date().getMonth()+1)+"/"+new Date().getFullYear(), propietario:this.propietario,tema:this.tema, totales:this.questions.length});
+        //this.navCtrl.pop();
+        this.navCtrl.setRoot(EmpezarTestAlumnoPage);
+    }, 500);
+      
     }
     redondeo(value){
       return Math.round(value * 100) / 10;

@@ -11,6 +11,8 @@ import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { App } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { AcercaDePage } from '../pages/acerca-de/acerca-de';
+import { PerfilProfesorPage } from '../pages/perfil-profesor/perfil-profesor';
 
 @Component({
   templateUrl: 'app.html'
@@ -84,5 +86,45 @@ export class MyApp {
       this.app.getActiveNav().setRoot(LogInPage);
       this.rootPage= LogInPage;//ponemos como pagina inicial la de logIn
     })
+  }
+
+  public goAcercaDe(){
+    this.app.getActiveNav().setRoot(AcercaDePage);
+    this.rootPage= AcercaDePage;
+  }
+
+  public goProfile(){
+
+    var keys = [];
+    var rol;
+
+    this.db.database.ref('users/').on("value", function (snapshot) {
+      snapshot.forEach(function (item) {
+        var itemVal = item.val();
+        keys.push(itemVal);
+      });
+      
+      for (let i = 0; i < keys.length; i++) {
+        if (keys[i].id.toLocaleLowerCase() == firebase.auth().currentUser.email) {
+          rol = keys[i].rol;
+          break;
+        } else {
+          rol = undefined;
+        }
+
+      }
+      console.log(snapshot.val());
+    }, function (error) {
+      console.log("Error: " + error.code);
+    });
+    
+    setTimeout(() => {
+      if (rol == 'P') {
+        this.rootPage = TabsProfesorPage;
+      } else if (rol == 'A') {
+        this.rootPage = TabsAlumnoPage;
+      }
+    }, 200);
+
   }
 }

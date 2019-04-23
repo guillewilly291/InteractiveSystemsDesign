@@ -51,7 +51,7 @@ export class StartCuestionarioPage {
           this.cuestionario.push(keys[i]);
         }
       }
-    }, 1000);
+    }, 200);
   }
  
 }

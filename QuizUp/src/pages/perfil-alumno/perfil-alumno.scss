@@ -26,4 +26,10 @@ page-perfil-alumno {
         border-radius: 50%;
     }
 
+    ion-content{
+        background-image: url('../../assets/images/bg.png') !important;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
 }

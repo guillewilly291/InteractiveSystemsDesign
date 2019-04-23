@@ -34,6 +34,9 @@ import { EditarPerfilProfesorPage } from '../pages/editar-perfil-profesor/editar
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { FormsModule } from '@angular/forms';
 import { CodigoPage } from '../pages/codigo/codigo';
+import { QuizDetailAlumnoPage } from '../pages/quiz-detail-alumno/quiz-detail-alumno';
+import { AcercaDePage } from '../pages/acerca-de/acerca-de';
+import { EstadisticasQuizPage } from '../pages/estadisticas-quiz/estadisticas-quiz';
 
 
 export const firebaseConfig = {
@@ -63,6 +66,9 @@ export const firebaseConfig = {
     EditarPerfilAlumnoPage,
     EditarPerfilProfesorPage,
     PerfilProfesorPage,
+    QuizDetailAlumnoPage,
+    AcercaDePage,
+    EstadisticasQuizPage,
     FlashCardComponent,
     CodigoPage
   ],
@@ -93,6 +99,9 @@ export const firebaseConfig = {
     EditarPerfilAlumnoPage,
     EditarPerfilProfesorPage,
     PerfilProfesorPage,
+    QuizDetailAlumnoPage,
+    AcercaDePage,
+    EstadisticasQuizPage,
     CodigoPage
   ],
   providers: [

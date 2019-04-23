@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { AngularFireDatabase } from 'angularfire2/database';
-import { QuizStats } from '../../providers/quiz-stats/quiz-stats';
-import { Observable } from 'rxjs/Observable';
+
+import { Cuestionario } from '../../models/cuestionario.model';
 import { EditarPerfilProfesorPage } from '../editar-perfil-profesor/editar-perfil-profesor';
+import { EstadisticasQuizPage } from '../estadisticas-quiz/estadisticas-quiz';
 
 /**
  * Generated class for the PerfilProfesorPage page.
@@ -20,29 +21,49 @@ import { EditarPerfilProfesorPage } from '../editar-perfil-profesor/editar-perfi
 })
 export class PerfilProfesorPage {
 
-  quizStats$: Observable<QuizStats[]>;
+  quizs: Cuestionario [] = [];
 
   userName: string="";
   userEmail: string ="";
   userKey: string ="";
 
-  private contactsRef=this.db.list<QuizStats>('quizStats/'+this.db.database.app.auth().currentUser.uid);
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public db: AngularFireDatabase) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public db: AngularFireDatabase, public alertCtrl:AlertController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PerfilProfesorPage');
 
-    this.quizStats$ = this.contactsRef.snapshotChanges().map(
-      changes => {return changes.map(c=> ({key: c.payload.key, ...c.payload.val()}));
-      });
-
-    
-
     this.getData();
+
+    this.getQuizs();
   }
 
+
+  getQuizs(){
+
+    var email = this.db.database.app.auth().currentUser.email;
+    
+    var quizs=[];
+
+    this.db.database.ref('cuestionarios').on("value", function(snapshot) {
+      snapshot.forEach(function(item) {
+          if( item.val().propietario == email ){
+            quizs.push(item.val());
+          }
+    });
+      console.log(snapshot.val());
+   }, function (error) {
+      console.log("Error: " + error.code);
+   });
+
+   setTimeout(() => {
+    quizs.forEach(element => {
+      this.quizs.push(element);
+    });
+     
+   }, 200);
+    
+  }
 
   getData(){
 
@@ -75,14 +96,12 @@ export class PerfilProfesorPage {
     console.log(userKey);
      
    }, 1000);*/
-   
     
     this.userName = userName;
     this.userKey = userKey;
     this.userEmail = userEmail;
     
   }
-
 
   editData(){
     var params = [];
@@ -91,6 +110,20 @@ export class PerfilProfesorPage {
     params.push(this.userName);
 
     this.navCtrl.push(EditarPerfilProfesorPage, params);
+  }
+
+
+  viewQuizStats(value: Cuestionario){
+    this.navCtrl.push(EstadisticasQuizPage, value);
+  }
+
+  showInfo(){
+    let alert = this.alertCtrl.create({
+      title: 'Información de la página',
+      subTitle: 'En esta página encontrarás tu información más relevante dentro de la aplicación, puedes observar los resultados de tus alumnos e incluso editar tus datos personales.',
+      buttons: ['OK']
+    });
+    alert.present()
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { CreateCuestionariosPage } from '../create-cuestionarios/create-cuestionarios';
 import { StartCuestionarioPage } from '../start-cuestionario/start-cuestionario';
 
@@ -17,7 +17,7 @@ import { StartCuestionarioPage } from '../start-cuestionario/start-cuestionario'
 })
 export class CuestionariosPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl:AlertController) {
   }
   
 
@@ -32,6 +32,15 @@ export class CuestionariosPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CuestionariosPage');
+  }
+
+  showInfo(){
+    let alert = this.alertCtrl.create({
+      title: 'Información de la página',
+      subTitle: 'Esta página sirve para la creación y comienzo de tests en QuizUp para tus alumnos. Comienza la creación de tests mediante los siguientes botones',
+      buttons: ['OK']
+    });
+    alert.present()
   }
 
 }

@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
 
 import { AngularFireDatabase } from 'angularfire2/database';
 import { QuizStats } from '../../providers/quiz-stats/quiz-stats';
 import { Observable } from 'rxjs/Observable';
 import { EditarPerfilAlumnoPage } from '../editar-perfil-alumno/editar-perfil-alumno';
+import { QuizDetailAlumnoPage } from '../quiz-detail-alumno/quiz-detail-alumno';
 
 /**
  * Generated class for the PerfilAlumnoPage page.
@@ -29,7 +30,7 @@ export class PerfilAlumnoPage {
 
   private contactsRef=this.db.list<QuizStats>('quizStats/'+this.db.database.app.auth().currentUser.uid);
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public db: AngularFireDatabase) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public db: AngularFireDatabase, public alertCtrl:AlertController) {
   }
 
   ionViewDidLoad() {
@@ -96,6 +97,21 @@ export class PerfilAlumnoPage {
 
   redondeo(value: number){
     return Math.round(value);
+  }
+
+  viewQuizDetail(value: QuizStats){
+
+    this.navCtrl.push(QuizDetailAlumnoPage, value);
+
+  }
+
+  showInfo(){
+    let alert = this.alertCtrl.create({
+      title: 'Información de la página',
+      subTitle: 'En esta página encontrarás tu información más relevante dentro de la aplicación, puedes observar los resultados de tus últimos tests e incluso editar tus datos personales.',
+      buttons: ['OK']
+    });
+    alert.present()
   }
 
 }

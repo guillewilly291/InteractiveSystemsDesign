@@ -11,14 +11,23 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
+
+    <ion-buttons end>
+        <button ion-button icon-only (click)="showInfo()">
+            <ion-icon name="help"></ion-icon>
+          </button>
+    </ion-buttons>
+    
     
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding id="content">
   <div id="cabecera">
     <ion-img padding id="imagen" src="assets/images/cuestionario.png"></ion-img>
   </div>
+  <h3>Test manager</h3>
+  <p>  </p>
   <button ion-button block (click)="crearPage()">Crear cuestionario </button>
   <button ion-button block (click)="empezarPage()">Empezar cuestionario </button>
 

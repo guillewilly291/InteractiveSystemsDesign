@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 import { CrearPreguntaPage } from '../crear-pregunta/crear-pregunta';
 import { Pregunta } from '../../models/Pregunta.model';
 import { PreguntasProvider } from '../../providers/preguntas/preguntas';
@@ -22,7 +22,7 @@ export class CreateCuestionariosPage {
   cuestionario: Pregunta[]=[];
   nombre:string;
   tema:string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private preguntaProvider: PreguntasProvider, public db:AngularFireDatabase, public toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private preguntaProvider: PreguntasProvider, public db:AngularFireDatabase, public toastCtrl: ToastController, public alertCtrl:AlertController) {
   }
 
   ionViewDidLoad() {
@@ -31,11 +31,12 @@ export class CreateCuestionariosPage {
   ionViewWillEnter(){
     this.cuestionario = this.preguntaProvider.getCuestionarios();
   }
+
   goToCrearPregunta(){
     this.navCtrl.push(CrearPreguntaPage)
   }
-  hayPreguntas(){
-    if(this.cuestionario.length==0){
+  hayPreguntas(nombre,tema){
+    if(this.cuestionario.length==0||nombre==undefined||tema==undefined){
       return false;
     }else{
       return true;
@@ -58,16 +59,18 @@ export class CreateCuestionariosPage {
       console.log("Error: " + error.code);
     });
     setTimeout(() => {
-      max=0;
+      
+      var max=0;
+      
       for (let i = 0; i < keys.length; i++) {
-        var max=Math.max(keys[i].id,max);
+         max=Math.max(keys[i].id,max);
         
       }
       contador= max +4;
+      
     
-    
-    this.db.database.ref('cuestionarios/' + firebase.auth().currentUser.uid+nombre).set({ propietario:firebase.auth().currentUser.email,id: contador,nombre: nombre, preguntas: cuest, fechaCreacion: new Date().getDate()+"/"+(new Date().getMonth()+1)+"/"+new Date().getFullYear(),tema:tema});
-    }, 1000);
+    this.db.database.ref('cuestionarios/' + firebase.auth().currentUser.uid+nombre).set({ aprobados:0,totalIntentos:0, aciertosTotales:0, propietario:firebase.auth().currentUser.email,id: contador,nombre: nombre, preguntas: cuest, fechaCreacion: new Date().getDate()+"/"+(new Date().getMonth()+1)+"/"+new Date().getFullYear(),tema:tema, activado:false});
+    }, 2000);
     const toast = this.toastCtrl.create({
       message: 'El cuestionario se ha guardado correctamente',
       duration: 3000
@@ -76,6 +79,15 @@ export class CreateCuestionariosPage {
     toast.present();
     this.preguntaProvider.removeCuestionario();
     this.navCtrl.pop();
+  }
+
+  showInfo(){
+    let alert = this.alertCtrl.create({
+      title: 'Información de la página',
+      subTitle: 'Esta página sirve para la creación de un cuestionario, rellena el nombre y el tema del mismo. Prueba a crear unas preguntas para el test.',
+      buttons: ['OK']
+    });
+    alert.present()
   }
 
 }

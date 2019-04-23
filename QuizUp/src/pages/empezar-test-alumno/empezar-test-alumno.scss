@@ -1,4 +1,14 @@
+page-empezar-test-alumno{
+    ion-content{
+        background-image: url('../../assets/images/bg.png') !important;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 
+    ion-item{
+        background: none;
+    }
+}
 input.input-field{
     
     box-sizing: border-box;

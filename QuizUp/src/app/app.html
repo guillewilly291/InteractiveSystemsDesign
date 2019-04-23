@@ -8,12 +8,12 @@
 
     <ion-content>
         <ion-list>
-            <button ion-item menuClose  >
-                <ion-icon item-start name="cog" ></ion-icon>
-                Ajustes
+            <button ion-item menuClose (click)="goProfile()">
+                <ion-icon item-start name="contact"></ion-icon>
+                Mi perfil
             </button>
-            <button ion-item menuClose >
-                <ion-icon item-start name="information-circle-outline" ></ion-icon>
+            <button ion-item menuClose (click)="goAcercaDe()">
+                <ion-icon item-start name="information-circle" ></ion-icon>
                 Acerca de
             </button>
             <button ion-item menuClose (click)="logout()">

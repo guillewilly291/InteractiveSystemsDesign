@@ -7,27 +7,35 @@
 <ion-header>
   <ion-navbar>
     <ion-buttons end>
-      <button ion-button icon-only (click)="goToCrearPregunta()">
-        <ion-icon name="add"></ion-icon>
-      </button>
+      
     </ion-buttons>
     <ion-title>Cuestionario</ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only (click)="showInfo()">
+            <ion-icon name="help"></ion-icon>
+          </button>
+    </ion-buttons>
   </ion-navbar>
+  
 </ion-header>
 
-<ion-content padding>
+<ion-content padding id="content">
   <ion-list>
     <div>
+      <h3 style=" margin-bottom: 0px">Nombre del cuestionario</h3>
       <ion-input class="tituloCuestionario" placeholder="Nombre del cuestionario" [(ngModel)]="nombre" type="text" autocapitalize="true" required>
       </ion-input>
     </div>
 
     <div>
+        <h3  class="title">Tema del cuestionario</h3>
       <ion-input class="tituloCuestionario" placeholder="Tema del cuestionario" [(ngModel)]="tema" type="text" autocapitalize="true" required>
       </ion-input>
     </div>
 
-    <button ion-item *ngFor="let pregunta of cuestionario" >
+    <h3 class="title" style=" margin-bottom: 10px">Preguntas</h3>
+
+    <button class="boton" ion-item *ngFor="let pregunta of cuestionario" >
   
       <h4 class="pregunta"><strong>{{pregunta.titulo}}</strong></h4>
   
@@ -40,7 +48,10 @@
       <p class="opcion"><strong>Opción correcta: </strong>{{pregunta.correcta}}</p>
   
     </button>
-    <button ion-button block [disabled]="!hayPreguntas()" (click)="guardarCuestionario(nombre, tema, cuestionario)">Guardar</button>
+    
   </ion-list>
-
+  <button class="guardarButton" style="width:43vw;"  ion-button [disabled]="!hayPreguntas(nombre,tema)" (click)="guardarCuestionario(nombre, tema, cuestionario)">Guardar</button>
+  <button class="guardarButton" style="width:43vw;"  ion-button color="secondary" (click)="goToCrearPregunta()">
+      Añadir pregunta
+   </button>
 </ion-content>

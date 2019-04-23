@@ -1,5 +1,9 @@
 page-create-cuestionarios {
 
+    .boton{
+        border-radius:9px;
+    }
+
 }
 .opcion{
     margin-left:20px !important;
@@ -7,7 +11,23 @@ page-create-cuestionarios {
 .pregunta{
     font-size: 2rem !important;
 }
+
+.tituloCuestionario::placeholder{
+    color: white;
+}
 .tituloCuestionario{
     border-bottom: 0.55px solid #c8c7cc;
 
 }
+
+.title{
+    margin-top: 10px !important;
+    margin-bottom: 0px;
+}
+
+#content{
+    background-image: url('../../assets/images/bg.png') !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+

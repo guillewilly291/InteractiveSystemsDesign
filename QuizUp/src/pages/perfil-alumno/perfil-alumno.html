@@ -13,12 +13,18 @@
       <ion-icon name="menu"></ion-icon>
     </button>
 
+    <ion-buttons end>
+        <button ion-button icon-only (click)="showInfo()">
+            <ion-icon name="help"></ion-icon>
+          </button>
+    </ion-buttons>
+
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-  <ion-item>
+  <ion-item no-lines>
     <ion-label>
 
         <img src="../../assets/images/userFoto.png" class="userFoto">
@@ -43,10 +49,11 @@
 
   <ion-list>
 
-    <button ion-item *ngFor="let quiz of quizStats$ | async" class="quizList">
+    <button ion-item *ngFor="let quiz of quizStats$ | async" class="quizList" (click)="viewQuizDetail(quiz)">
 
       <ion-label>
-        <p><strong>Quiz: </strong>{{quiz.tema}}</p>
+        <p><strong>Quiz: </strong>{{quiz.titulo}}</p>
+        <p><strong>Tema: </strong>{{quiz.tema}}</p>
         <p><strong>Realizado el: </strong>{{quiz.fecha}}</p>
       </ion-label>
 

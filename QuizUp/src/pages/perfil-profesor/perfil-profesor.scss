@@ -6,8 +6,8 @@ page-perfil-profesor {
     }
 
     .fixedListLabel {
-        min-width: 30% !important;
-        max-width: 30% !important;
+        min-width: 22% !important;
+        max-width: 22% !important;
     }
 
     .quizListNota{
@@ -26,4 +26,18 @@ page-perfil-profesor {
         border-radius: 50%;
     }
 
+    ion-content{
+        background-image: url('../../assets/images/bg.png') !important;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+}
+
+.toolbar-title-ios{
+    margin-bottom: 19px;
+}
+
+.toolbar-title-md{
+    margin-bottom: 10px;
 }

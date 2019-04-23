@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 
 import { ResponderQuizPage } from '../responder-quiz/responder-quiz';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -23,7 +23,7 @@ export class EmpezarTestAlumnoPage {
   encodeData: any;
   scannedData: {};
   barcodeScannerOptions: BarcodeScannerOptions;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public db: AngularFireDatabase, public toastCtrl: ToastController, private barcodeScanner: BarcodeScanner) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public db: AngularFireDatabase, public toastCtrl: ToastController, private barcodeScanner: BarcodeScanner, private alertCtrl:AlertController) {
     this.encodeData = "https://www.FreakyJolly.com";
     //Options
     this.barcodeScannerOptions = {
@@ -86,16 +86,34 @@ export class EmpezarTestAlumnoPage {
     setTimeout(() => {
       
       for (let i = 0; i < keys.length; i++) {
-        if(keys[i].id==this.nombre){
-          
-          cuestionario = keys[i];
-          //this.navCtrl.push(ResponderQuizPage, cuestionario);
-          this.navCtrl.setRoot(ResponderQuizPage, cuestionario);
-          break;
-        }
         
+        if(keys[i].id==this.nombre){
+          if(keys[i].activado==false){
+            let alert = this.alertCtrl.create({
+              title: 'Test no activado',
+              subTitle: 'Parece que el profesor no ha activado el test. Espere a que lo active',
+              buttons: ['OK']
+            });
+            alert.present()
+            return;
+          }else{
+            cuestionario = keys[i];
+            //this.navCtrl.push(ResponderQuizPage, cuestionario);
+            this.navCtrl.setRoot(ResponderQuizPage, cuestionario);
+            return;
+          }
+          
+        } 
       }
-    }, 1000);
+
+      let alert = this.alertCtrl.create({
+        title: 'Código incorrecto',
+        subTitle: 'El código introducido no se corresponde con ningún test',
+        buttons: ['OK']
+      });
+      alert.present()
+
+    }, 500);
   }else{
       const toast = this.toastCtrl.create({
         message: 'Por favor, introduzca el código proporcionado por el profesor.',

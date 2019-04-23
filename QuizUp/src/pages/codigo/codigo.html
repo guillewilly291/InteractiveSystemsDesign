@@ -14,5 +14,10 @@
     <ion-title id="whiteSpace">Para empezar el test, solicite a sus alumnos que introduzcan el siguiente código:</ion-title>
       
     <div id="divCodigo"><h2 id="codNumber">{{codigo}}</h2></div>
+
+    <ion-item>
+        <ion-label>Activado</ion-label>
+        <ion-toggle (ionChange)="activar(toggle)" [(ngModel)]="toggle" color="secondary"></ion-toggle>
+      </ion-item>
    
 </ion-content>

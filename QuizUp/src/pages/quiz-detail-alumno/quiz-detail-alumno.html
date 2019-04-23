@@ -1,0 +1,32 @@
+<!--
+  Generated template for the QuizDetailAlumnoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title> <ion-icon name="person"></ion-icon> Detalles del Quiz </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <h1 class="textTitulo"><u> {{ quizStats.titulo }} </u></h1>
+  <h2> {{ quizStats.tema }} </h2>
+  <p>Quiz realizado el: {{ quizStats.fecha }}</p>
+  <p>Preguntas acertadas {{ quizStats.aciertos }}</p>
+  <p>Preguntas falladas {{ quizStats.totales - quizStats.aciertos }}</p>
+  <p><strong> {{ quizStats.propietario }} </strong> ha creado este Quiz</p>
+
+  <div class="divNota">
+    <p class="valorNota"> {{ redondeo(quizStats.aciertos / quizStats.totales * 100)/10 }} </p>
+  </div>
+
+  
+
+</ion-content>
+
+  <ion-footer class="footer" no-border>
+    <button  class="eliminarButton" ion-button color="danger" (click)="eliminarQuiz()"> Eliminar del historial    <ion-icon name="trash"></ion-icon> </button>
+  </ion-footer>

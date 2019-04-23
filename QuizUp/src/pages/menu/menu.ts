@@ -24,7 +24,7 @@ export class MenuPage {
 
   pages: PageInterface[] = [
     { title: 'Ajustes', pageName: 'TabsAlumnoPage', tabComponent: 'Tab1Page', index: 0, icon: 'home' },
-    { title: 'Acerca de', pageName: 'TabsAlumnoPage', tabComponent: 'Tab2Page', index: 1, icon: 'contacts' },
+    { title: 'Acerca de', pageName: 'AcercaDePage', tabComponent: 'Tab2Page', index: 1, icon: 'contacts' },
     { title: 'Cerrar sesión', pageName: 'SpecialPage', icon: 'shuffle' },
   ];
 
