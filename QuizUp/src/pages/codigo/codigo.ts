@@ -17,19 +17,41 @@ import firebase from 'firebase';
 })
 export class CodigoPage {
   codigo:string;
+  toggle:boolean;
   constructor(public navCtrl: NavController, public navParams: NavParams, public db:AngularFireDatabase) {
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     
     this.codigo= this.navParams.data.id;
+    this.toggle=false;
+
+    var keys=[];
+    var ID=this.codigo;
+    this.db.database.ref('cuestionarios/').on("value", function (snapshot) {
+      snapshot.forEach(function (item) {
+        var itemVal = item.val();
+        if(itemVal.id==ID){
+          
+          keys.push(itemVal);
+        }     
+        
+      });
+    
+      console.log(snapshot.val());
+    }, function (error) {
+      console.log("Error: " + error.code);
+    });
+
+    setTimeout(() => {
+      this.toggle=keys[0].activado;
+  }, 500);
     
   }
 
   activar(toggle){
     let userRef = this.db.database.ref('cuestionarios/' + firebase.auth().currentUser.uid + this.navParams.data.nombre);
     if(toggle==true){
-      debugger
       userRef.update({'activado': true})
     }else{
       userRef.update({'activado': false})

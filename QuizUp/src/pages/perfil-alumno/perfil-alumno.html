@@ -45,9 +45,9 @@
   </ion-item>
 
 
-  <H1> Mis ultimos QuizUp </H1>
+  <H1> Mis últimos QuizUp </H1>
 
-  <ion-list>
+  <ion-list no-lines>
 
     <button ion-item *ngFor="let quiz of quizStats$ | async" class="quizList" (click)="viewQuizDetail(quiz)">
 

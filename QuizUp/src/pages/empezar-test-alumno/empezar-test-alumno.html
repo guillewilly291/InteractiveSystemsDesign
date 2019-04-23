@@ -11,7 +11,7 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
+  <ion-list no-lines>
       <h3 id="title">Introducir código</h3>
       <ion-item>
         <input type="text" class="input-field" [(ngModel)]="nombre" name="field1" value="" />
@@ -23,7 +23,7 @@
       <h4 id="title2">o si lo prefieres, escanea el QR</h4>
       
       <ion-img padding id="imagen2" src="assets/images/qr.png"></ion-img>
-      <button ion-button (click)="scanCode()" style="float:right; height:27px;margin-right: 67px;margin-top: 4px">Escanear</button>
+      <button ion-button style="float:right; height:27px;margin-right: 67px;margin-top: 4px">Escanear</button>
       <div *ngIf="scannedData">
         <p>
           Scanned Code Text : <b>{{ scannedData["text"] }}</b>

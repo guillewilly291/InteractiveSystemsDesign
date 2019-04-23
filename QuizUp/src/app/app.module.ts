@@ -113,8 +113,7 @@ export const firebaseConfig = {
     Toast,
     PreguntasProvider,
     QuizStatsProvider,
-    BarcodeScanner
-    
+    BarcodeScanner,
   ]
 })
 export class AppModule {

@@ -47,7 +47,6 @@ export class EmpezarTestAlumnoPage {
       });
   }
    encodedText() {
-     debugger
     this.barcodeScanner
       .encode(this.barcodeScanner.Encode.TEXT_TYPE, this.encodeData)
       .then(

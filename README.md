@@ -1,9 +1,8 @@
 # InteractiveSystemsDesign
 Repositorio para la asignatura de diseño de sistemas interactivos
 
-Para igualar: El diseño y la funcionalidad básica, acerca de las preguntas y el funcionamiento. 
-
-Para mejorar: Guardar resultados, teniendo un historial 
-
-Problemas:  La privacidad acerca de los nombres
-            Que se vea en la clase los puntos que llevas puede resultar "avergonzante".
+Sergio Bernárdez Molina  NIA: 100363603
+Sergio Martín Montoro  NIA: 100363655
+David Silveira Amaro  NIA: 100363695
+Guillermo de Lecea Ramos  NIA: 100363697
+Ibay Amor Salgado  NIA: 100363699

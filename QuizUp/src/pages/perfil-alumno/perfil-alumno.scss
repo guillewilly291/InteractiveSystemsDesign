@@ -26,6 +26,12 @@ page-perfil-alumno {
         border-radius: 50%;
     }
 
+    .quizList{
+        margin-bottom: 3px;
+        margin-top: 3px;
+        border-radius:9px !important;
+    }
+
     ion-content{
         background-image: url('../../assets/images/bg.png') !important;
         background-repeat: no-repeat;

@@ -73,6 +73,7 @@ export class CreateCuestionariosPage {
     }, 2000);
     const toast = this.toastCtrl.create({
       message: 'El cuestionario se ha guardado correctamente',
+      position: 'top',
       duration: 3000
     });
     

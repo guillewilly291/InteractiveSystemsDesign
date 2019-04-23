@@ -29,6 +29,10 @@ export class EstadisticasQuizPage {
   }
 
   redondeo(value: number){
+    if(isNaN(value)){
+      return 0;
+    }
+
     return Math.round(value);
   }
 

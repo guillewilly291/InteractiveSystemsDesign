@@ -12,7 +12,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { App } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AcercaDePage } from '../pages/acerca-de/acerca-de';
-import { PerfilProfesorPage } from '../pages/perfil-profesor/perfil-profesor';
 
 @Component({
   templateUrl: 'app.html'

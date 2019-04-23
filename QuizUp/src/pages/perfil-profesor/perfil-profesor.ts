@@ -33,13 +33,19 @@ export class PerfilProfesorPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad PerfilProfesorPage');
 
-    this.getData();
+    //this.getData();
+    //this.getQuizs();
+  }
 
+  ionViewWillEnter(){
+    this.getData();
     this.getQuizs();
   }
 
 
   getQuizs(){
+
+    this.quizs = [];
 
     var email = this.db.database.app.auth().currentUser.email;
     
